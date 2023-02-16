@@ -33,7 +33,7 @@
                                   </div>
                             </div>
                             <div class="comment_section">
-                                <textarea class="form-control mt-3 border-0" id="comment-input" placeholder="Leave a comment" rows="3"></textarea>
+                                <textarea class="form-control mt-3 border-0 d-none" id="comment-input" placeholder="Leave a comment" rows="3"></textarea>
                             </div>
                             
                     </div>
