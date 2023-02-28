@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -15,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('discription');
-            $table->string('image');
+            $table->string('name');
             $table->timestamps();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Category::class);
         });
     }
 
@@ -31,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('categories');
     }
 };
