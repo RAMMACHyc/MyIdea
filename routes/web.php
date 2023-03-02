@@ -24,3 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/posts', [App\Http\Controllers\HomeController::class, 'posts'])->name('posts');
 Route::resource("posts",PostsController::class);
 
+Route::get('/test', function () {
+    return view('test');
+});
+

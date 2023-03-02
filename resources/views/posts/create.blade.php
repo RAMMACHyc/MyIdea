@@ -3,7 +3,7 @@
 @section('content')
 <div class="card mt-5">
         <div class="card-header">
-            <h2>Laravel 10 CRUD Example from scratch - NiceSnippets.com</h2>
+            <h2>Create</h2>
         </div>
         <div class="card-body">
             <div class="row">
@@ -33,7 +33,7 @@
                         </div>
                     @endif
                        
-                    <form action="{{ route('posts.store') }}" method="POST" >
+                    <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data" >
                         @csrf
                       
                          <div class="row">
@@ -41,6 +41,13 @@
                                 <div class="form-group">
                                     <strong>Title:</strong>
                                     <input type="text" name="title" class="form-control" placeholder="Title">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Image:</strong>
+                                    <input type="file" name="image" id="image" class="form-control" >
+
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

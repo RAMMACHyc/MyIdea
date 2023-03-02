@@ -53,10 +53,10 @@
 			@enderror
 		</p>
 		<p>
-			<label for="decription" >Contenu</label><br/>
+			<label for="decription" >description</label><br/>
 
 			<!-- S'il y a un $post->content, on complète la valeur du textarea -->
-			<textarea name="decription" id="decription" lang="fr" rows="10" cols="50" placeholder="Le contenu du post" >{{ isset($post->decription) ? $post->decription : old('decription') }}</textarea>
+			<textarea name="decription" id="decription" lang="fr" rows="10" cols="50" placeholder="Le description du post" >{{ isset($post->decription) ? $post->decription : old('decription') }}</textarea>
 
 			<!-- Le message d'erreur pour "content" -->
 			@error("decription")

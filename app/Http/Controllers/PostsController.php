@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 
 
 class PostsController extends Controller
@@ -19,31 +20,29 @@ class PostsController extends Controller
 
     public function create() { 
     // On retourne la vue "/resources/views/posts/edit.blade.php"
-    return view("posts.edit");
+    return view("posts.create");
     }
 
     public function store(Request $request) {
           // 1. La validation
-    $this->validate($request, [
+    $request->validate([
         'title' => 'bail|required|string|max:255',
         "description" => 'bail|required',
-        "image" => 'bail|required|image|max:1024',
-      
+        "image" => 'required|mimes:jpg,jpeg,png|max:5048',
     ]);
-
-    // 2. On upload l'image dans "/storage/app/public/posts"
-    $chemin_image = $request->picture->store("posts");
+    
+    // On génère un nouveau nom pour l'image
+    $newImageName = uniqid() .  '.' . $request->image->extension();
+    $request->image->move(public_path('images'), $newImageName);
 
     // 3. On enregistre les informations du Post
     Post::create([
         "title" => $request->title,
         "description" => $request->description,
-        "image" => $chemin_image,
-       
+        "image" => $newImageName,
+        'user_id' => auth()->user()->id,
     ]);
-
-    // 4. On retourne vers tous les posts : route("posts.index")
-    return redirect(route("posts.index"));
+    return redirect('posts')->with('flash_message','Post added!');
      }
 
     public function show(Post $post) {
